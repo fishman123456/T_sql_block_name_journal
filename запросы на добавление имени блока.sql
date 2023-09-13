@@ -390,15 +390,18 @@ use 56new4
 select *
 from text102 t1, text49 t49
 join BlockName b on b.Cab like '%309'
---------------------------------------- НЕ СОДЕРЖИТ ШКАФ
-select *
-from BlockName b, text102 t1
+--------------------------------------- НЕ СОДЕРЖИТ ШКАФ 582 работает 13-09-2023, завтра надо применить
+select distinct b.ends,b.*
+from
+BlockName b, text102 t1
 where b.Cab like  '%'+ t1.obj+ '%' and b.ends not like '%шкаф%'
+--where b.Cab like  '%'+ t1.obj+ '%' and b.NameB not like '%electric-cabinet_2022%'
 order by b.id
+
 ------------ iner join
 select *
 from text102 t1
-inner join BlockName b on (b.Cab like  t1.obj+ '%' and b.ends not like '%шкаф%' )
+inner join BlockName b on (b.Cab like '%'+ t1.obj+ '%' and b.ends not like '%шкаф%' )
 order by b.id
 --------------------------------------- координаты шкафов
 select *
